@@ -25,7 +25,7 @@ jobs:
       # - run: git branch --track main origin/main
 
       - run: npx nx format:check
-      - run: npx nx run-many -t build client remote server --prod --parallel=3
-      - uses: actions/checkout@v4
+      - name: Build project files
+        run: npx nx run-many -t build client remote server --prod --parallel=3
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag infoscreen:$(date +%s)
