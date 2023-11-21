@@ -2,32 +2,30 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    # Cache node_modules
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 20
-        cache: 'npm'
-    - run: npm ci
-    - uses: nrwl/nx-set-shas@v3
-    # This line is needed for nx affected to work when CI is running on a PR
-   # - run: git branch --track main origin/main
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Cache node_modules
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - uses: nrwl/nx-set-shas@v3
+      # This line is needed for nx affected to work when CI is running on a PR
+      # - run: git branch --track main origin/main
 
-    - run: npx nx format:check
-    - run: npx nx affected -t build --parallel=3
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag infoscreen:$(date +%s)
+      - run: npx nx format:check
+      - run: npx nx affected -t build --parallel=3
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag infoscreen:$(date +%s)
