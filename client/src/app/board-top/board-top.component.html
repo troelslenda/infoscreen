@@ -1,0 +1,147 @@
+<!-- morning theme -->
+
+<ng-container *ngIf="boardSetup$ | async as boardSetup">
+  <div class="flex flex-row">
+    <div class="basis-1/3">
+      <div class="clock">
+        <div class="time">{{ boardSetup.time | date : 'shortTime' }}</div>
+        <div class="date">{{ boardSetup.time | date : 'fullDate' }}</div>
+      </div>
+    </div>
+    <div class="basis-1/3">
+      <div *ngIf="boardSetup.weather.current">
+        <div>Vejret lige nu</div>
+        <div class="weather">
+          <div class="temperature">
+            <div class="current_temperature">
+              {{
+                boardSetup.weather.current.temperature.current
+                  | number : '1.0-0'
+              }}<sup>o</sup>
+            </div>
+            <div class="apparent_temperature">
+              Føles som
+              {{
+                boardSetup.weather.current.apparent_temperature.current
+                  | number : '1.0-0'
+              }}<sup>o</sup>
+            </div>
+          </div>
+          <div>
+            <i
+              [class]="
+                'weather-code-icon wi wi-wmo4680-' +
+                boardSetup.weather.current.code
+              "
+            ></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="basis-1/3">
+      <div *ngIf="boardSetup.weather.daily">
+        <div>Vejret {{ boardSetup.time | date : 'mediumDate' }}</div>
+        <div class="weather">
+          <div class="temperature">
+            <div class="current_temperature">
+              {{ boardSetup.weather.daily.temperature.high | number : '1.0-0'
+              }}<sup>o</sup
+              ><span class="low"
+                >/{{
+                  boardSetup.weather.daily.apparent_temperature.low
+                    | number : '1.0-0'
+                }}<sup>o</sup></span
+              >
+            </div>
+
+            <div class="wind">
+              <i
+                [class]="
+                  'wi wi-wind towards-' +
+                  boardSetup.weather.daily.wind.direction +
+                  '-deg'
+                "
+              ></i>
+              {{
+                boardSetup.weather.daily.wind.speed / 3.6 | number : '1.0-0'
+              }}m/s ({{
+                boardSetup.weather.daily.wind.gust / 3.6 | number : '1.0-0'
+              }}m/s)
+            </div>
+            <div class="uv">
+              UV {{ boardSetup.weather.daily.uv_max }} ({{
+                boardSetup.weather.daily.uv_max_clear_sky
+              }})
+            </div>
+          </div>
+          <div>
+            <i
+              [class]="
+                'weather-code-icon wi wi-wmo4680-' +
+                boardSetup.weather.daily.code
+              "
+            ></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clothing" *ngIf="boardSetup.weather.clothing">
+    <div *ngIf="boardSetup.weather.clothing.rain_clothing">
+        // det regner mere end 5 grader
+        Regntøj
+    </div>
+    <div *ngIf="boardSetup.weather.clothing.full_suit">
+        // det er mindre end 5 grader eller der er sne
+        Flyverdragt
+    </div>
+    <div *ngIf="boardSetup.weather.clothing.coat">
+        // det regner ikke og er mellem 5 og 15 grader
+        Jakke, bukser
+    </div>
+    <div *ngIf="boardSetup.weather.clothing.blouse">
+        // det regner ikke og er mellem 15 og 19 grader
+        Bluse, bukser
+    </div>
+    <div *ngIf="boardSetup.weather.clothing.tshirt">
+        // det regner ikke og er mellem 19 og 23 grader
+        tshirt og bukser
+    </div>
+    <div *ngIf="boardSetup.weather.clothing.shorts">
+        // det regner ikke og er mere end 23 grader
+        tshirt og shorts
+    </div>
+
+<div class="hourtimer">
+    sunrise percent in day
+    timeisnow percent in day
+    outthedoor percent in day
+    gotobed percent in day
+    sunset percent in day
+
+
+</div>
+
+
+
+</div>
+</ng-container>
+
+<!-- <div *ngTemplateOutlet="time"></div>
+<div *ngTemplateOutlet="sunrise"></div>
+
+
+
+
+<ng-template #time> 9:13 Onsdag d 25 oktober </ng-template>
+
+<ng-template #sunrise> Solen står op om xx minutter </ng-template>
+<ng-template #sunset> Solen går ned om xx minutter </ng-template>
+<ng-template #clothing> </ng-template> -->
+
+
+<!-- 
+QR CODE for Wifi credentials
+
+QR CODE for remote control -->

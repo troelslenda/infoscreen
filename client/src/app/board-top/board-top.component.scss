@@ -1,0 +1,41 @@
+:host {
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+@mixin large-text{
+    font-size: 6rem;
+    font-weight: 900;
+}
+
+.clock {
+    padding: 2rem;
+
+    text-shadow:  0 0 1.5rem blue;
+    .time {
+     @include large-text;
+    }
+    .date {
+        font-size: 1.2rem;
+    }
+}
+
+
+.weather {
+    .current_temperature {
+        white-space: nowrap;
+        @include large-text;
+    }
+    .low {
+        font-size: 4rem;
+        color: grey;
+        
+    }
+    .weather-code-icon {
+        font-size: 12rem;
+
+    }
+    display: flex;
+    flex-direction: row;
+}

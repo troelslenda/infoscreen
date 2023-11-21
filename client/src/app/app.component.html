@@ -1,0 +1,17 @@
+
+<div class="page-wrapper" [style.background-image]="'url(' + (theme$ | async)?.backgroundPhoto?.url + ')'" [class]="(theme$ | async)?.name">
+  <div class="top">
+
+    <infoscreen-board-top>
+    </infoscreen-board-top>
+  </div>
+  <div class="bottom">
+    <ng-container *ngIf="calendars$ | async as calendars">
+      <infoscreen-demo-component [date]="currentTime$ | async" [persons]="persons$ | async" [calendars]="calendars">
+      </infoscreen-demo-component>
+    </ng-container>
+  </div>
+</div>
+<div class="overlay">
+  <router-outlet></router-outlet>
+</div>

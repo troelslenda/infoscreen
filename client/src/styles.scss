@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add global styles to this file, and also import other style files */
+
+@import "~node_modules/angular-calendar/css/angular-calendar.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+
+
+html, body, infoscreen-root {
+    display: block;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.cal-week-view, .cal-week-view .cal-hour-odd{
+    background: transparent;
+}
+
+
+@import './weather-icons-master/sass/weather-icons-core.scss';
+@import './weather-icons-master/sass/weather-icons-variables.scss';
+@import './weather-icons-master/sass/weather-icons-classes.scss';
+
+@import './weather-icons-master/sass/weather-icons-wind.scss';
+// Mappings to various APIs
+//@import "mappings/wi-yahoo.scss";
+//@import "mappings/wi-forecast-io.scss";
+@import "./weather-icons-master/sass/mappings/wi-wmo4680.scss";
+//@import "mappings/wi-owm.scss";
+//@import "mappings/wi-wunderground.scss";

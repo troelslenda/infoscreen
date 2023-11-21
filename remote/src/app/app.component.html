@@ -1,0 +1,47 @@
+<div class="grid grid-cols-5">
+  <button
+    *ngFor="let person of persons$ | async"
+    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4"
+    (click)="navigateTo(person.navigationUrl)"
+  >
+    {{ person.name }}
+  </button>
+</div>
+
+<div class="grid grid-cols-4 gap-x-6">
+  <button (click)="adjustTime('day', 'decrement')" class="btn btn--secondary">
+    -
+  </button>
+  <div>
+    <h1>Time</h1>
+    <h1>{{ dateDebug.time | date }}</h1>
+  </div>
+  <div>
+    <h1>Corrected time</h1>
+    <h1>{{ dateDebug.correctedTime | date }} ({{dateDebug.dayCorrection}})</h1>
+  </div>
+
+  <button (click)="adjustTime('day', 'increment')" class="btn btn--primary">
+    +
+  </button>
+</div>
+
+<div class="grid grid-cols-4 gap-x-6">
+  <button (click)="adjustTime('hour', 'decrement')" class="btn btn--secondary">
+    -
+  </button>
+  <div>
+    <h1>Hour</h1>
+    <h1>{{ dateDebug.time | date : 'shortTime' }}</h1>
+  </div>
+  <div>
+    <h1>Corrected Hour</h1>
+    <h1>{{ dateDebug.correctedTime | date : 'shortTime' }} ({{dateDebug.hourCorrection}})</h1>
+  </div>
+  <button (click)="adjustTime('hour', 'increment')" class="btn btn--primary">
+    +
+  </button>
+</div>
+<button (click)="reset()" class="btn btn--primary">
+  Reset Date adjustment
+</button>
