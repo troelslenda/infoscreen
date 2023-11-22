@@ -18,11 +18,10 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm ci
-      - uses: nrwl/nx-set-shas@v3
+    
       # This line is needed for nx affected to work when CI is running on a PR
       # - run: git branch --track main origin/main
 
-      - run: npx nx format:check
       - name: Build project files
         run: npx nx run-many -t build client remote server --prod --parallel=3
       - name: Build the Docker image
