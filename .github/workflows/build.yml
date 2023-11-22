@@ -13,7 +13,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: cache-node-modules-${{ hashFiles('yarn.lock') }}
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: yarn install
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --pure-lockfile
@@ -39,7 +39,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: cache-node-modules-${{ hashFiles('yarn.lock') }}
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
   # - name: Cache Nx
   #      uses: actions/cache@v2
   #      with:
@@ -71,6 +71,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag infoscreen:$(date +%s)
       - uses: KuhlTime/ghcr-action@v2
