@@ -59,4 +59,23 @@ jobs:
             dist
             Dockerfile
             package*.json
+  build-docker:
+    runs-on: ubuntu-latest
+    needs: distributed-task
+    steps:
+      - name: Download files to publish
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact
+      - name: Get cached node_modules    
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag infoscreen:$(date +%s)
+      - uses: KuhlTime/ghcr-action@v2
+          
+
+          
+
     
