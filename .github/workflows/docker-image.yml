@@ -29,3 +29,4 @@ jobs:
         run: npx nx run-many -t build client remote server --prod --parallel=3
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag infoscreen:$(date +%s)
+      - uses: KuhlTime/ghcr-action@v2
