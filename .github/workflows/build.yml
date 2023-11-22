@@ -46,4 +46,4 @@ jobs:
             cache-nx-${{ hashFiles('yarn.lock') }}-
       - run: git fetch --no-tags --prune --depth=1 origin main
       - name: nx run-many:${{ matrix.target }}
-        run: node ./tools/scripts/run-many.js ${{ matrix.target }} ${{ matrix.jobIndex }} ${{ env.jobCount }} $GITHUB_REF
+        run: npx nx run-many --target=build --all=true --prod
