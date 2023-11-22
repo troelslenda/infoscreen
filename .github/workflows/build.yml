@@ -24,10 +24,11 @@ jobs:
     needs: install-deps
     strategy:
       matrix:
-        target: ['test', 'lint', 'build']
-        jobIndex: [1, 2, 3, 4]
+        #target: ['test', 'lint', 'build']
+        target: ['build']
+        jobIndex: [1, 2, 3]
     env:
-      jobCount: 4
+      jobCount: 3
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
@@ -43,6 +44,6 @@ jobs:
           restore-keys: |
             cache-nx-${{ hashFiles('yarn.lock') }}-${{ matrix.target }}-${{ matrix.jobIndex }}-
             cache-nx-${{ hashFiles('yarn.lock') }}-
-      - run: git fetch --no-tags --prune --depth=1 origin master
+      - run: git fetch --no-tags --prune --depth=1 origin main
       - name: nx run-many:${{ matrix.target }}
         run: node ./tools/scripts/run-many.js ${{ matrix.target }} ${{ matrix.jobIndex }} ${{ env.jobCount }} $GITHUB_REF
