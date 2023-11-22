@@ -1,31 +1,31 @@
-name: Docker Image CI
+#name: Docker Image CI
 
-on:
-  workflow_run:
-    workflows: [Build]
-    types:
-      - completed
+#on:
+ # workflow_run:
+  #  workflows: [Build]
+   # types:
+    #  - completed
 
-jobs:
-  builddocker:
-    runs-on: ubuntu-latest
+#jobs:
+#  builddocker:
+#    runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/download-artifact@v2.1.1
-        with:
-          name: artifact
+#    steps:
+#      - uses: actions/download-artifact@v2.1.1
+#        with:
+#          name: artifact
       # Cache node_modules
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm ci
+#      - uses: actions/setup-node@v3
+ #       with:
+#          node-version: 20
+#          cache: 'npm'
+  #    - run: npm ci
     
       # This line is needed for nx affected to work when CI is running on a PR
       # - run: git branch --track main origin/main
 
-      - name: Build project files
-        run: npx nx run-many -t build client remote server --prod --parallel=3
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag infoscreen:$(date +%s)
-      - uses: KuhlTime/ghcr-action@v2
+#      - name: Build project files
+#        run: npx nx run-many -t build client remote server --prod --parallel=3
+#      - name: Build the Docker image
+#        run: docker build . --file Dockerfile --tag infoscreen:$(date +%s)
+#      - uses: KuhlTime/ghcr-action@v2
