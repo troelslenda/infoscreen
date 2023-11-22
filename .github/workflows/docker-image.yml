@@ -11,9 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/download-artifact@v2.1.1
       # Cache node_modules
       - uses: actions/setup-node@v3
         with:
